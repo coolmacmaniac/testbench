@@ -13,9 +13,9 @@ import sys
 # add modules path before importing them
 sys.path.insert(0, '../../')
     
-from pyutils.web.HttpRequest import HttpRequest
-from pyutils.web.HttpMethod import HttpMethod
-from pyutils.web.HttpRequestManager import HttpRequestManager
+from pyutils.web import HttpRequest
+from pyutils.web import HttpMethod
+from pyutils.web import HttpRequestManager
 
 class TestDriver:
     
