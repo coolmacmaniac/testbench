@@ -20,21 +20,39 @@ from pyutils.web import HttpRequestManager
 class TestDriver:
     
     def __init__(self):
+        self.reqMgr = HttpRequestManager(logged=True)
         pass
     
-    def testWebRequest(self):
+    def testWebRequest1(self):
+        req = HttpRequest(uri='http://date.jsontest.com/')
+        self.reqMgr.invoke(req, HttpMethod.GET)
+    
+    def testWebRequest2(self):
         req = HttpRequest()
-        req.uri = 'http://date.jsontest.com/'
-        
-        reqMgr = HttpRequestManager()
-        rsp = reqMgr.invoke(req, HttpMethod.GET)
-        
-        print(rsp.payload)
-        pass
+        req.uri = 'http://services.groupkt.com/country/search'
+        req.queryParams = {'text': 'und'}
+        req.headers = {'Accept': 'application/json'}
+        self.reqMgr.invoke(req, HttpMethod.GET)
     
-    pass
+    def testWebRequest3(self):
+        req = HttpRequest()
+        req.uri = 'https://reqres.in/api/users'
+        req.headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+                }
+        req.payload = {
+                "name": "titan",
+                "job": "spin and revolve"
+                }
+        self.reqMgr.invoke(req, HttpMethod.POST)
 
 if __name__ == '__main__':
     td = TestDriver()
-    td.testWebRequest()
+    td.testWebRequest1()
+    print()
+    td.testWebRequest2()
+    print()
+    td.testWebRequest3()
+    print()
     pass
