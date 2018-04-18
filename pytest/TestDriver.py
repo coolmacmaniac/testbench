@@ -16,12 +16,20 @@ sys.path.insert(0, '../../')
 from pyutils.web import HttpRequest
 from pyutils.web import HttpMethod
 from pyutils.web import HttpRequestManager
+from pyutils.web import HttpProxy
+from pyutils.web import HttpProxyCredentials
 
 class TestDriver:
     
     def __init__(self):
         self.reqMgr = HttpRequestManager(logged=True)
         pass
+    
+    def __proxyDetails(self):
+        return HttpProxy(host='', port=0)
+    
+    def __proxyCredentials(self):
+        return HttpProxyCredentials(uname='', passwd='')
     
     def testWebRequest1(self):
         req = HttpRequest(uri='http://date.jsontest.com/')
