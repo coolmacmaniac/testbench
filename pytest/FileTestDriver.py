@@ -13,18 +13,17 @@ import sys
 # add modules path before importing them
 sys.path.insert(0, '../../')
 
-from pyutils.io import FileManager
+from pyutils.io import FileManager as fm
 
 class FileTestDriver:
     
     def __init__(self):
-        self.fm = FileManager()
         pass
     
     def testFileRead(self):
         print('-' * 20, 'Read Test', '-' * 20)
         fileLoc = 'Sample.txt'
-        contents = self.fm.read(fileLoc)
+        contents = fm.read(fileLoc)
         if contents is not None:
             print(contents)
         pass
@@ -33,7 +32,7 @@ class FileTestDriver:
         print('-' * 20, 'Write Test', '-' * 20)
         fileLoc = 'Sample.txt'
         contents = 'This is purely a dummy text.\nModi lies...\n'
-        self.fm.write(fileLoc, contents)
+        fm.write(fileLoc, contents)
         pass
     
 if __name__ == '__main__':
