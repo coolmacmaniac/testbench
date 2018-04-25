@@ -26,19 +26,28 @@ class FileTestDriver:
         contents = fm.read(fileLoc)
         if contents is not None:
             print(contents)
-        pass
     
     def testFileWrite(self):
         print('-' * 20, 'Write Test', '-' * 20)
         fileLoc = 'Sample.txt'
         contents = 'This is purely a dummy text.\nModi lies...\n'
         fm.write(fileLoc, contents)
-        pass
+    
+    def testCSVFileRead(self):
+        print('-' * 20, 'Read CSV Test', '-' * 20)
+        fileLoc = 'employees.csv'
+        headers, records = fm.readCSV(fileLoc)
+        if headers is not None:
+            print(headers)
+        if records is not None:
+            for row in records:
+                print(row)
     
 if __name__ == '__main__':
     ftd = FileTestDriver()
-    ftd.testFileRead()
+#    ftd.testFileRead()
+#    print()
+#    ftd.testFileWrite()
+#    print()
+    ftd.testCSVFileRead()
     print()
-    ftd.testFileWrite()
-    print()
-    pass

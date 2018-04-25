@@ -159,6 +159,17 @@ class DBTestDriver:
             print('Following files were created after export:')
             for filePath in savedFiles:
                 print(filePath)
+    
+    def testImportCSVFiles(self):
+        print('-' * 20, 'DB Import Some CSV Files Test', '-' * 20)
+        dbLoc = 'csv_to_db.sqlite'
+        csvFiles = ['articles.csv', 'employees.csv']
+        self.dbm.connectDB(dbLoc)
+        tables = self.dbm.importCSV(csvFiles)
+        if tables is not None:
+            for table in tables:
+                self.dbm.saveTable(table)
+        self.dbm.closeDB()
 
 if __name__ == '__main__':
     dbtd = DBTestDriver()
@@ -178,7 +189,9 @@ if __name__ == '__main__':
     print()
     dbtd.testListTables()
     print()
-    #dbtd.testExportAllTables()
+    dbtd.testExportAllTables()
+    print()
+    #dbtd.testExportSomeTables()
     #print()
-    dbtd.testExportSomeTables()
+    dbtd.testImportCSVFiles()
     print()
